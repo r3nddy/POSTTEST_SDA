@@ -339,9 +339,11 @@ void hapusHewan() {
         return;
     }
 
-    string namaHapus = daftarHewan[idx - 1].nama;
+    string namaHapus = (daftarHewan + (idx - 1))->nama;
     for (int i = idx - 1; i < jumlahHewan - 1; i++) {
-        daftarHewan[i] = daftarHewan[i + 1];
+        Hewan* ptrCurr = daftarHewan + i;
+        Hewan* ptrNext = daftarHewan + i + 1;
+        *ptrCurr = *ptrNext; // pergeseran via dereferensi pointer
     }
     jumlahHewan--;
 
@@ -448,13 +450,15 @@ void fibonacciSearchId() {
     for (int i = 0; i < jumlahHewan; i++) temp[i] = daftarHewan[i];
  
     for (int i = 1; i < jumlahHewan; i++) {
-        Hewan key = temp[i];
+        Hewan key = *(temp + i);
         int j = i - 1;
-        while (j >= 0 && temp[j].id > key.id) {
-            temp[j + 1] = temp[j];
+        while (j >= 0 && (temp + j)->id > key.id) {
+            Hewan* ptrDst = temp + j + 1;
+            Hewan* ptrSrc = temp + j;
+            *ptrDst = *ptrSrc; // pergeseran via dereferensi pointer
             j--;
         }
-        temp[j + 1] = key;
+        *(temp + j + 1) = key;
     }
  
     int n = jumlahHewan;
@@ -812,7 +816,7 @@ void dequeueAntrian() {
 void tampilSemuaAntrian() {
     CLEAR;
     cout << "\n   +========================================================+" << endl;
-    cout << "   |     TAMPIL SEMUA ANTRIAN (POINTER ARITMATIKA)         |" << endl;
+    cout << "   |     TAMPIL SEMUA ANTRIAN (POINTER ARITMATIKA)          |" << endl;
     cout << "   +========================================================+" << endl;
 
     if (isQueueEmpty()) {
@@ -1022,7 +1026,7 @@ void peekAntrianDanRiwayat() {
 void tampilSemuaRiwayat() {
     CLEAR;
     cout << "\n   +========================================================+" << endl;
-    cout << "   |     TAMPIL SEMUA RIWAYAT (POINTER ARITMATIKA)         |" << endl;
+    cout << "   |     TAMPIL SEMUA RIWAYAT (POINTER ARITMATIKA)          |" << endl;
     cout << "   +========================================================+" << endl;
 
     if (isStackEmpty()) {
