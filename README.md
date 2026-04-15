@@ -19,6 +19,7 @@ Repositori ini berisi kumpulan tugas mata kuliah Struktur Data C++.
 | `Pertemuan-3` | [Searching]                            |
 | `Pertemuan-4` | [Stack & Queue]                        |
 | `Pertemuan-5` | [Single Linked List]                   |
+| `Pertemuan-6` | [Double Linked List]                   |
 
 <br>
 ## 🛠️ Persiapan Lingkungan (Environment Setup)
